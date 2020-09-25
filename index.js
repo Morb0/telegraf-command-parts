@@ -1,9 +1,9 @@
-const { mount } = require('telegraf');
+const { Composer } = require('telegraf');
 
 const regex = /^\/([^@\s]+)@?(?:(\S+)|)\s?([\s\S]+)?$/i;
 
 /* eslint no-param-reassign: ["error", { "props": false }] */
-module.exports = () => mount('text', (ctx, next) => {
+module.exports = () => Composer.mount('text', (ctx, next) => {
   const parts = regex.exec(ctx.message.text.trim());
   if (!parts) return next();
   const command = {
